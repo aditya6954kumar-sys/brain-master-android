@@ -1,0 +1,18 @@
+# Android build outputs & caches
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+android/.gradle/
+android/build/
+android/app/build/
+
+# Node & scratch
+node_modules/
+npm-debug.log
+yarn-error.log
