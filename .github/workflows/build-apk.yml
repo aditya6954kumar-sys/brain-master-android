@@ -22,47 +22,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      # Note: Android SDK is pre-installed on ubuntu-latest runners.
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.5'
-
-      - name: Auto-fix Gradle Configuration
-        working-directory: ./android
-        run: |
-          cat << 'EOF' > build.gradle
-          buildscript {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-              dependencies {
-                  classpath 'com.android.tools.build:gradle:8.2.2'
-              }
-          }
-          task clean(type: Delete) {
-              delete rootProject.layout.buildDirectory
-          }
-          EOF
-
-          cat << 'EOF' > settings.gradle
-          pluginManagement {
-              repositories {
-                  google()
-                  mavenCentral()
-                  gradlePluginPortal()
-              }
-          }
-          dependencyResolutionManagement {
-              repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-          }
-          rootProject.name = "BrainMaster"
-          include ':app'
-          EOF
 
       - name: Build Debug APK
         working-directory: ./android
